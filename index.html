@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pos</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.8.2-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+<!-----------------nav_st------------------------------->
+<nav class="navbar m_navbar fixed-top">
+    <div id="logo">
+    </div>
+    <div id="acc"></div>
+</nav>
+<span class="logo-lg"><b>POS</b>Point Of Sale</span>
+<div id="side_nav">
+
+    <ul>
+        <li><button id="btnDashboard" class="m_active"><i class="fas fa-tachometer-alt"></i>DashBoard</button></li>
+        <li><button id="btncustomer" class="fas fa-users"></i>Customers</button></li>
+        <li><button id="btnitem" class="fas fa-cubes">Items</button></li>
+        <li><button id="btnorder" ><i class="fas fa-notes-medical"></i>Order</button></li>
+        <li><button id="btnreport"><i class="fas fa-chart-line"></i>Reports</button></li>
+    </ul>
+
+</div>
+<!--------------------Body------------------------------>
+<div class="m_content-main" style="padding-top: 20px">
+    <div id="dashboardPanel">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <a href="#">
+                        <div class="small-box color1">
+                            <div class="inner">
+                                <h3>150</h3>
+
+                                <p>Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <a href="#">
+                        <div class="small-box color2">
+                            <div class="inner">
+                                <h3>100</h3>
+
+                                <p>Customers</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <a href="#">
+                        <div class="small-box color3">
+                            <div class="inner">
+                                <h3>85%</h3>
+
+                                <p>Growth</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <a href="#">
+                        <div class="small-box color4">
+                            <div class="inner">
+                                <h3>1.5k</h3>
+
+                                <p>Items</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="container row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="m_shadow">
+                        <img src="img/Weekly-Sales-Chart-2.jpg" width="400px">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="m_shadow">
+                        <img src="img/hgffh.png" width="400px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------customer form---------------------->
+    <div id="customerPanel"style="display: none">
+        <div class="m_content">
+            <div class="card-header">
+                <h3>Customer Manager</h3>
+            </div>
+            <div class="m_card">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Customer ID</label>
+                            <input id="custID" type="text" class="form-control" placeholder="ID">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Name</label>
+                            <input id="name" type="text" class="form-control" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>E-mail</label>
+                            <input id="email" type="email" class="form-control" placeholder="E-mail">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>PhoneNumber.</label>
+                            <input id="tel" type="tel" class="form-control" placeholder="PhoneNumber">
+                        </div>
+                    </div>
+
+                    <button id="add" type="button" onclick="addRow()" class="btn btn-primary">ADD</button>
+                    <button id="update" onclick="updateRow()" type="button" class="btn btn-success">UPDATE</button>
+                    <button id="cancel" type="button" class="btn btn-secondary">CANCEL</button>
+                    <button id="delete" onclick="deleteRow(row)" type="button" class="btn btn-danger">DELETE</button>
+                </form>
+            </div>
+
+            <div class="card-header">
+                <h3>Customers</h3>
+            </div>
+            <div class="m_card">
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-3 float-left">
+                            <input type="search" class="form-control" name=""  placeholder="Search by Name/ID">
+                        </div>
+                    </div>
+                </form>
+                <table id="tbl" class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Tel</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr onclick="displayRow(this)">
+                        <td>C001</td>
+                        <td>piyumi</td>
+                        <td>Galle</td>
+                        <td>shashikalapiyumi@gmail.com</td>
+                        <td>0771865498</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------item form----------------->
+    <div id="itemPanel"style="display: none">
+        <div class="m_content">
+            <div class="card-header">
+                <h3>Items Manager</h3>
+            </div>
+            <div class="m_card">
+                <form>
+
+                    <div class="form-group">
+                        <label>Item Code</label>
+                        <input type="text" class="form-control" placeholder="ItemCode">
+                    </div>
+                    <div class="form-group">
+                        <label>Item Name</label>
+                        <input type="text" class="form-control" placeholder="ItemName">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Unit Price</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="UnitPrice"
+                                       aria-label="Dollar amount (with dot and two decimal places)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Quantity</label>
+                            <input type="number" name="" class="form-control" placeholder="Qty" >
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">ADD</button>
+                    <button type="button" class="btn btn-success">UPDATE</button>
+                    <button type="button" class="btn btn-danger">DELETE</button>
+                </form>
+            </div>
+
+            <div class="card-header">
+                <h3>View Items</h3>
+            </div>
+            <div class="m_card">
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-3 float-left">
+                            <input type="search" class="form-control" name="" id="" placeholder="Search by Name/ID">
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ItemCode</th>
+                        <th scope="col">ItemName</th>
+                        <th scope="col">UnitPrice</th>
+                        <th scope="col">Qty</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>nayana</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>malsha</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>malki</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!--------------------------------order form----------------------------->
+    <div id="orderPanel"style="display: none">
+        <div class="m_content">
+            <div class="card-header">
+                <h3>Place Order</h3>
+            </div>
+            <div class="m_card">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>OrderID</label>
+                            <input type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>CustomerID</label>
+                            <input type="text" class="form-control" placeholder="CustomerID">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Order Date</label>
+                        <input type="date" class="form-control" placeholder="OrderDate">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Select Item</label>
+                            <select  class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Quantity</label>
+                            <input type="number" class="form-control" placeholder="Qty">
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ItemCode</th>
+                            <th scope="col">ItemName</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">UnitPrice</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <button type="submit" class="btn btn-primary">Confirm Order</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!---------------report------------------------->
+    <div id="reportPanel"style="display: none">
+        <div class="m_content">
+            <div class="card-header">
+                <h3>OrderDetails</h3>
+            </div>
+            <div class="m_card">
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-6 float-left">
+                            <input type="search" class="form-control" name="" placeholder="Search by Name/ID">
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">OrderID</th>
+                        <th scope="col">CustomerID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Items</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">UnitPrice</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-------------------------Footer------------------------->
+    <footer class="modal-footer">
+        <span> Nayana Katipearchchi.. All rights reserved.</span>
+    </footer>
+</div>
+
+<!-----------------------scripts------------------------>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
